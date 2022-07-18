@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sql
+  labels:
+    app: sql
+spec:
+  containers:
+  - name: redis-container
+    image: nginx:perl
