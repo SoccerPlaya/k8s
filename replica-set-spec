@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set-frontend
+  labels:
+    producer: amit
+    app: ui
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      producer: amit
+  template:
+    metadata:
+      name: my-spec
+      labels:
+        producer: amit
+    spec:
+      containers:
+      - name: app1
+        image: supergiantkir/animals:bear
+        volumeMounts:
+        - name: app-storage
+          mountPath: /storage 
+      - name: app2
+        image: yanivomc/spring-music:latest
+        volumeMounts:
+        - name: app-storage
+          mountPath: /storage 
+      volumes:
+      - name: app-storage
+        hostPath: 
+          path: /tmp/files
